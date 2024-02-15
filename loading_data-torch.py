@@ -2,9 +2,11 @@ import torch
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 import matplotlib.pyplot as plt
+from torch.utils.data import DataLoader
 
 # Carregando o conjunto de dados MNIST
 training_data = datasets.MNIST(root='.', train=False, download=True, transform=ToTensor())
+test_data = datasets.MNIST(root=".", train=False, download=True, transform=ToTensor())
 
 # Imprimindo os primeiro indice do conjunto de dados
 print('-'*50)
@@ -25,3 +27,8 @@ plt.show()
 
 # Imprimindo as classes
 print(training_data.classes)
+
+# Dividindo os dados
+
+loaded_train = DataLoader(training_data, batch_size=64, shuffle=True)
+loaded_test = DataLoader(test_data, batch_size=64, shuffle=True)
